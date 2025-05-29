@@ -9,11 +9,14 @@ const errorsHandler = require("./middlewares/errors.Handler")
 const notFound = require("./middlewares/notFound")
 
 const filmRouter = require("./router/film")
+const imagePath = require('./middlewares/imagePath')
 
 //middleware per gli asset statici
 app.use(express.static("public"))
 //middleware per il parsing del body delle richieste
 app.use(express.json())
+//middleware per le immagini
+app.use(imagePath)
 
 //definisco la rotta base/entry-point
 app.get("/", (req, res) => {

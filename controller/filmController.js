@@ -9,8 +9,18 @@ const index = (req, res) => {
         if (err) {
             return res.status(500).json({ error: "Database query failed" })
         }
-        console.log(filmResult)
-        res.json(filmResult)
+
+        //ciclo filmResult per sovrascrivere image
+        const films = filmResult.map((film) => {
+            const obj = {
+                ...film,
+                image: req.imagePath + film.image
+            }
+            return obj
+        })
+        // console.log(filmResult)
+
+        res.json(films)
     })
 }
 
