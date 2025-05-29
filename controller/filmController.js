@@ -17,7 +17,24 @@ const index = (req, res) => {
 
 //show
 const show = (req, res) => {
-    console.log("Dettaglio film")
+    //recupero l'id
+    const id = req.params.id
+    //creo la query 
+    //recupero il singolo film con tutte le sue recensioni
+    const sql = `
+    SELECT movies.*, reviews.*
+    FROM movies
+    LEFT JOIN reviews ON movies.id = reviews.movie_id
+    WHERE movies.id = ?`;
+    //eseguo la query
+    connection.query(sql, [id], (err, filmResult) => {
+        if (err) {
+            return res.status(500).json({ error: "Database query failed" + err })
+        }
+        //verifico se il post esiste
+        if (filmResult.length === 0) return res.status(404).json({ error: "FIlm non found" })
+        res.json(filmResult)
+    })
 }
 
 
