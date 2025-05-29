@@ -1,0 +1,27 @@
+{
+  "name": "webapp-express",
+  "version": "1.0.0",
+  "description": "Ciao ragazzi, esercizio di oggi: Setup Web App Express",
+  "homepage": "https://github.com/MattiaCallegaro/webapp-express#readme",
+  "bugs": {
+    "url": "https://github.com/MattiaCallegaro/webapp-express/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MattiaCallegaro/webapp-express.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "watch": "node --watch app.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1"
+  }
+}
