@@ -3,7 +3,15 @@ const connection = require('../data/db')
 
 //index
 const index = (req, res) => {
-    console.log("Elenco film")
+    //recupero i post dal database
+    connection.query("SELECT * FROM movies", (err, filmResult) => {
+        //gestisco eventuali errori con il database
+        if (err) {
+            return res.status(500).json({ error: "Database query failed" })
+        }
+        console.log(filmResult)
+        res.json(filmResult)
+    })
 }
 
 
