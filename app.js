@@ -2,6 +2,8 @@
 const express = require('express');
 //utilizzo express
 const app = express();
+//importo il pacchetto cors
+const cors = require('cors');
 //definisco la porta del mio server
 const port = 3000;
 //importo i custom middleware
@@ -11,6 +13,8 @@ const notFound = require("./middlewares/notFound")
 const filmRouter = require("./router/film")
 const imagePath = require('./middlewares/imagePath')
 
+//middleware per il cors
+app.use(cors({ origin: process.env.FE_APP }))
 //middleware per gli asset statici
 app.use(express.static("public"))
 //middleware per il parsing del body delle richieste
@@ -24,7 +28,7 @@ app.get("/", (req, res) => {
     res.send("Benvenuto nella mia webapp")
 })
 //importo il router
-app.use("/films", filmRouter)
+app.use("/api/films", filmRouter)
 
 //Middleware per gli errori
 app.use(errorsHandler);
