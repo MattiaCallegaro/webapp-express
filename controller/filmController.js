@@ -64,9 +64,27 @@ const show = (req, res) => {
     });
 };
 
+//store
+
+const storeReview = (req, res) => {
+    //mi recupero id
+    const id = req.params.id
+
+    //recupero i dati del body
+    const { text, vote, name } = req.body;
+    //preparo la query
+    const addSql = "INSERT INTO reviews (text, vote, name, movie_id) VALUES (?,?,?,?)";
+    //eseguo la query
+    connection.query(addSql, [text, vote, name, id], (err, movieResults) => {
+        if (err) return res.status(500).json({ error: 'Database error' });
+
+        res.status(201).json({ message: "Recensione aggiunta", id: movieResults.insertId })
+    })
+}
+
 
 
 
 module.exports = {
-    index, show
+    index, show, storeReview
 }
